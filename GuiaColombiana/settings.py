@@ -75,7 +75,8 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-#DATABASES['default'] = dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
+'''
 DATABASES = {
     'default': {
     'ENGINE': 'django.db.backends.postgresql',
@@ -87,6 +88,7 @@ DATABASES = {
 
     }
 }
+'''
 
 
 # Password validation
