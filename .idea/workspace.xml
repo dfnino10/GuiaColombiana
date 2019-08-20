@@ -13,8 +13,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GuiaColombiana/wsgi.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="272">
+              <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
               <folding>
                 <element signature="e#230#239#0" expanded="true" />
               </folding>
@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/GuiaColombiana/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="289">
+              <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
               <folding>
                 <element signature="e#315#324#0" expanded="true" />
               </folding>
@@ -42,6 +42,11 @@
         <option value="Python Script" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>middleware</find>
+    </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -68,6 +73,19 @@
               <item name="GuiaColombiana" type="b2602c69:ProjectViewProjectNode" />
               <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
               <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GuiaColombiana" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
+              <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
+              <item name="Apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GuiaColombiana" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
+              <item name="GuiaColombiana" type="462c0819:PsiDirectoryNode" />
+              <item name="Apps" type="462c0819:PsiDirectoryNode" />
+              <item name="AdministracionGuia" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -131,8 +149,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/GuiaColombiana/wsgi.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="272">
+          <caret line="16" column="43" lean-forward="true" selection-start-line="16" selection-start-column="43" selection-end-line="16" selection-end-column="43" />
           <folding>
             <element signature="e#230#239#0" expanded="true" />
           </folding>
@@ -141,8 +159,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/GuiaColombiana/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
+        <state relative-caret-position="289">
+          <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
           <folding>
             <element signature="e#315#324#0" expanded="true" />
           </folding>
