@@ -36,7 +36,7 @@ def add_user_view(request):
         telefono = jsonUser['telefono']
         correo = jsonUser['correo']
 
-        user_model = User.objects.create_user(usuario=usuario, password=password)
+        user_model = User.objects.create_user(username=usuario, password=password)
         user_model.nombres = nombres
         user_model.apellidos = apellidos
         user_model.documento = documento
