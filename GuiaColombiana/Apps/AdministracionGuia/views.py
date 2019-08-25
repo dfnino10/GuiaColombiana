@@ -19,7 +19,7 @@ from .models import Usuario
 
 def register_user_view(request):
     form = UserForm()
-    return render(request, 'guia/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 
 @csrf_exempt

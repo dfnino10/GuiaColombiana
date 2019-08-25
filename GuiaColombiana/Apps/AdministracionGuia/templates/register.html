@@ -6,25 +6,62 @@
     <title>Registrar Usuario</title>
 </head>
 <body>
-     <form method="post" action="" onsubmit="return sendForm();">
-         <input id="nombres" name="nombres" type="text" placeholder="Nombres" /><br />
-         <input id="apellidos"  name="apellidos"  type="text" placeholder="Primer apellido" /><br />
-         <input id="documento" name="documento" type="text" placeholder="Numero documento" /><br />
-         <input id="fechaNacimiento" name="fechaNacimiento" type="text" placeholder="DD/MM/YYYY" /><br />
-         <input id="telefono" name="telefono" type="text" placeholder="Telefono contacto" /><br />
-         <input id="correo" name="correo" type="text" placeholder="Correo electronico" /><br />
-         <select id="sexo" name="sexo">
-            <option value="F">Femenino</option>
-            <option value="M">Masculino</option>
-         </select>
+    <div style="text-align: center;font-size: x-large;">
+        <span> Registro</span>
+    </div>
+     <form method="post" action="" onsubmit="return sendForm();" style="text-align: center;">
+         <div style="border: 1px solid black;margin: 0% 30%;">
+             <p>
+                 <label for="usuario" > Usuario: </label>
+                 <input id="usuario" required="required" name="usuario" type="text" placeholder="Usuario" />
+             </p>
+             <p>
+                 <label for="nombres" >Nombres: </label>
+                 <input id="nombres" required="required" name="nombres" type="text" placeholder="Nombres" /><br />
+             </p>
+             <p>
+                 <label for="apellidos" >Apellidos: </label>
+                 <input id="apellidos"  required="required" name="apellidos"  type="text" placeholder="Apellidos" /><br />
+             </p>
+             <p>
+                 <label for="documento" >Número Documento: </label>
+                 <input id="documento" required="required" name="documento" type="text" placeholder="Numero documento" /><br />
+             </p>
+              <p>
+                 <label for="sexo" >Sexo: </label>
+                  <select id="sexo" name="sexo" required="required">
+                      <option value="M">Masculino</option>
+                      <option value="F">Femenino</option>
+                 </select>
+             </p>
+             <p>
+                 <label for="fechaNacimiento" >Fecha nacimiento: </label>
+                 <input id="fechaNacimiento" required="required" name="fechaNacimiento" type="date" placeholder="DD/MM/YYYY" /><br />
+             </p>
+             <p>
+                 <label for="telefono" >Teléfono contacto: </label>
+                 <input id="telefono" required="required" name="telefono" type="text" placeholder="Teléfono contacto" /><br />
+             </p>
+             <p>
+                 <label for="correo" >Correo electrónico: </label>
+                 <input id="correo" required="required" name="correo" type="email" placeholder="Correo electronico" /><br />
+             </p>
+             <p>
+                 <label for="password" > Contraseña: </label>
+                 <input id="password" required="required" name="password" type="password" placeholder="Contraseña" /><br />
+             </p>
+             <p>
+                 <label for="password2" >Confirmar Contraseña: </label>
+                 <input id="password2" required="required" name="password2" type="password" placeholder="Confirmar contraseña" /><br />
+             </p>
+             <p>
+                <input id="send" name="send" type="submit" value="Registrar" />
+                <a href="http://localhost:8000/admin">Cancelar</a>
+             </p>
+         </div>
 
-         <input id="usuario" name="usuario" type="text" placeholder="Usuario" /><br />
-         <input id="password" name="password" type="password" placeholder="Contraseña" /><br />
-         <input id="password2" name="password2" type="password" placeholder="Confirmar contraseña" /><br />
+    </form>
 
-         <input id="send" name="send" type="submit" value="Registrar" />
-        <a href="http://localhost:8000/admin">Cancelar</a>
-	</form>
 
 <script>
         function sendForm() {
@@ -35,16 +72,16 @@
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:8000/addUser/",
-                data: JSON.stringify({ 'usuario': $('#username').val() , 'nombres': $('#nombres').val(),
+                url: "http://localhost:8000/guia/addUser/",
+                data: JSON.stringify({  'usuario': $('#usuario').val(), 'nombres': $('#nombres').val(),
                     'telefono': $('#telefono').val(), 'fechaNacimiento': $('#fechaNacimiento').val(),
                     'documento': $('#documento').val(), 'sexo': $('#sexo').val(),
                     'apellidos': $('#apellidos').val(), 'password': $('#password').val(), 'correo': $('#correo').val() }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
-                    alert("Usuario registrado: " + $('#username').val());
-                    window.location = "http://localhost:8000/guia/Index/";
+                    alert("Usuario registrado: " + $('#usuario').val());
+                    window.location = "http://localhost:8000/guia/admin/";
                 },
                 failure: function(errMsg) {
                     alert("Se presentó un error al adicionar el usuario");
