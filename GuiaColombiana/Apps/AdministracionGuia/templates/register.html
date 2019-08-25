@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <title>Registrar Usuario</title>
+</head>
+<body>
+     <form method="post" action="" onsubmit="return sendForm();">
+         <input id="nombres" name="nombres" type="text" placeholder="Nombres" /><br />
+         <input id="apellidos"  name="apellidos"  type="text" placeholder="Primer apellido" /><br />
+         <input id="documento" name="documento" type="text" placeholder="Numero documento" /><br />
+         <input id="fechaNacimiento" name="fechaNacimiento" type="text" placeholder="DD/MM/YYYY" /><br />
+         <input id="telefono" name="telefono" type="text" placeholder="Telefono contacto" /><br />
+         <input id="correo" name="correo" type="text" placeholder="Correo electronico" /><br />
+         <select id="sexo" name="sexo">
+            <option value="F">Femenino</option>
+            <option value="M">Masculino</option>
+         </select>
+
+         <input id="usuario" name="usuario" type="text" placeholder="Usuario" /><br />
+         <input id="password" name="password" type="password" placeholder="Contraseña" /><br />
+         <input id="password2" name="password2" type="password" placeholder="Confirmar contraseña" /><br />
+
+         <input id="send" name="send" type="submit" value="Registrar" />
+        <a href="http://localhost:8000/admin">Cancelar</a>
+	</form>
+
+<script>
+        function sendForm() {
+            if ($('#password').val() != $('#password2').val()) {
+                alert('Las contraseñas no son iguales');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/addUser/",
+                data: JSON.stringify({ 'usuario': $('#username').val() , 'nombres': $('#nombres').val(),
+                    'telefono': $('#telefono').val(), 'fechaNacimiento': $('#fechaNacimiento').val(),
+                    'documento': $('#documento').val(), 'sexo': $('#sexo').val(),
+                    'apellidos': $('#apellidos').val(), 'password': $('#password').val(), 'correo': $('#correo').val() }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    alert("Usuario registrado: " + $('#username').val());
+                    window.location = "http://localhost:8000/guia/Index/";
+                },
+                failure: function(errMsg) {
+                    alert("Se presentó un error al adicionar el usuario");
+                }
+            });
+            return false;
+        }
+    </script>
+
+</body>
+</html>

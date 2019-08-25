@@ -20,7 +20,7 @@ from django.urls import path, include
 from GuiaColombiana.Apps.AdministracionGuia import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    url(r'^guia/', include(('GuiaColombiana.Apps.AdministracionGuia.urls', "guia"), namespace= "guia")),
+    url(r'^viewRegister/$', views.register_user_view, name='viewRegister'),
+    url(r'^addUser/$', views.add_user_view, name='addUser'),
 
 ]
