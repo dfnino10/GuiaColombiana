@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gu&iacute; Colombiana</title>
+</head>
+<body>
+    <h1> Login </h1>
+    <form method="post" action="" onsubmit="return sendForm();">
+        <input id="username" name="username" type="text" placeholder="Username">
+        <input id="password" name="password" type="password" placeholder="Password">
+        <input id="send" name="send" type="submit" value="Registrar" />
+
+        <a href="http://localhost:8000/guia/viewRegister">Cancelar</a>
+    </form>
+
+    <script>
+        function sendForm(){
+            if($('#password').val() == '' || &('$#username').val() == '')
+            {
+                alert('Los campos no pueden ser vacios');
+            }
+
+            $.ajax(
+                {
+                    type:"POST",
+                    url:
+                }
+            )
+        }
+
+
+    </script>
+</body>
+</html>
