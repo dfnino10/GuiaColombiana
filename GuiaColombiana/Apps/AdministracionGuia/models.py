@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.forms import ModelForm
 # Create your models here.
 
 CATEGORIAS = (('Mu','Museos'), ('Re','Restaurantes'), ('Bic','Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
@@ -45,3 +45,9 @@ class Tour(models.Model):
     nombre = models.CharField(max_length=35)
     precio = models.CharField(max_length=11)
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
+
+
+class UserForm (ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono', 'correo']
