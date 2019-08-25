@@ -36,13 +36,14 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8000/addUser/",
-                data: JSON.stringify({ 'username': $('#username').val() , 'first_name': $('#first_name').val() ,
-                    'last_name': $('#last_name').val() , 'password': $('#password').val() , 'email': $('#email').val() }),
+                data: JSON.stringify({ 'usuario': $('#username').val() , 'nombres': $('#nombres').val() ,
+                    'telefono': $('#telefono').val() , 'fechaNacimiento': $('#fechaNacimiento').val() ,
+                    'apellidos': $('#apellidos').val() , 'password': $('#password').val() , 'correo': $('#correo').val() }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
                     alert("Usuario registrado: " + $('#username').val());
-                    window.location = "http://localhost:8000/gallery/viewImages/";
+                    window.location = "http://localhost:8000/guia/Index/";
                 },
                 failure: function(errMsg) {
                     alert("Se presentó un error al adicionar el usuario");

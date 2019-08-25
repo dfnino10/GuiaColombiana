@@ -26,8 +26,7 @@ def register_user_view(request):
 def add_user_view(request):
     if request.method == 'POST':
         jsonUser = json.loads(request.body)
-        apellidoPaterno = jsonUser['apellidoPaterno']
-        apellidoMaterno = jsonUser['apellidoMaterno']
+        apellidos = jsonUser['apellidos']
         nombres = jsonUser['nombres']
         documento = jsonUser['documento']
         fechaNacimiento = jsonUser['fechaNacimiento']
@@ -39,8 +38,7 @@ def add_user_view(request):
 
         user_model = User.objects.create_user(usuario=usuario, password=password)
         user_model.nombres = nombres
-        user_model.apellidoPaterno = apellidoPaterno
-        user_model.apellidoMaterno = apellidoMaterno
+        user_model.apellidos = apellidos
         user_model.documento = documento
         user_model.fechaNacimiento = fechaNacimiento
         user_model.sexo = sexo
