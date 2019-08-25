@@ -5,40 +5,42 @@ from django.db import models
 CATEGORIAS = (('Mu','Museos'), ('Re','Restaurantes'), ('Bic','Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
 
 class Guia(models.Model):
-    ApellidoPaterno = models.CharField(max_length=35)
-    ApellidoMaterno = models.CharField(max_length=35)
-    Nombres = models.CharField(max_length=35)
-    Documento = models.CharField(max_length=11)
-    FechaNacimiento = models.DateField()
+    apellidoPaterno = models.CharField(max_length=35)
+    apellidoMaterno = models.CharField(max_length=35)
+    nombres = models.CharField(max_length=35)
+    documento = models.CharField(max_length=11)
+    fechaNacimiento = models.DateField()
     SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
-    Sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
-    Descripcion= models.CharField(max_length=200)
-    Categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
+    sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
+    descripcion= models.CharField(max_length=200)
+    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
 
     def NombreCompleto(self):
         cadena = "{0} {1}, {2}"
-        return cadena.format(self.ApellidoPaterno, self.ApellidoMaterno, self.Nombres)
+        return cadena.format(self.apellidoPaterno, self.apellidoMaterno, self.nombres)
 
     def __str__(self):
         return self.NombreCompleto()
 
 class Usuario(models.Model):
-    ApellidoPaterno = models.CharField(max_length=35)
-    ApellidoMaterno = models.CharField(max_length=35)
-    Nombres = models.CharField(max_length=35)
-    Documento = models.CharField(max_length=11)
-    FechaNacimiento = models.DateField()
+    apellidoPaterno = models.CharField(max_length=35)
+    apellidoMaterno = models.CharField(max_length=35)
+    nombres = models.CharField(max_length=35)
+    documento = models.CharField(max_length=11)
+    fechaNacimiento = models.DateField()
     SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
-    Sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
+    sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
+    usuario = models.CharField(max_length=20)
+    password = models.CharField(max_length=20)
 
     def NombreCompleto(self):
         cadena = "{0} {1}, {2}"
-        return cadena.format(self.ApellidoPaterno, self.ApellidoMaterno, self.Nombres)
+        return cadena.format(self.apellidoPaterno, self.apellidoMaterno, self.nombres)
 
     def __str__(self):
         return self.NombreCompleto()
 
 class Tour(models.Model):
-    Nombre = models.CharField(max_length=35)
-    Precio = models.CharField(max_length=11)
-    Categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
+    nombre = models.CharField(max_length=35)
+    precio = models.CharField(max_length=11)
+    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
