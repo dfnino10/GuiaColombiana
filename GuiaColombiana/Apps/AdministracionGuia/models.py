@@ -23,19 +23,20 @@ class Guia(models.Model):
         return self.NombreCompleto()
 
 class Usuario(models.Model):
-    apellidoPaterno = models.CharField(max_length=35)
-    apellidoMaterno = models.CharField(max_length=35)
-    nombres = models.CharField(max_length=35)
+    apellidos = models.CharField(max_length=100)
+    nombres = models.CharField(max_length=100)
     documento = models.CharField(max_length=11)
     fechaNacimiento = models.DateField()
     SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
     sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
     usuario = models.CharField(max_length=20)
     password = models.CharField(max_length=20)
+    telefono = models.CharField(max_length=10)
+    correo = models.CharField(max_length=100)
 
     def NombreCompleto(self):
-        cadena = "{0} {1}, {2}"
-        return cadena.format(self.apellidoPaterno, self.apellidoMaterno, self.nombres)
+        cadena = "{0}, {1}"
+        return cadena.format(self.apellidos, self.nombres)
 
     def __str__(self):
         return self.NombreCompleto()
