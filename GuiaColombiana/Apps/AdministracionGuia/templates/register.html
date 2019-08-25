@@ -36,9 +36,10 @@
             $.ajax({
                 type: "POST",
                 url: "http://localhost:8000/addUser/",
-                data: JSON.stringify({ 'usuario': $('#username').val() , 'nombres': $('#nombres').val() ,
-                    'telefono': $('#telefono').val() , 'fechaNacimiento': $('#fechaNacimiento').val() ,
-                    'apellidos': $('#apellidos').val() , 'password': $('#password').val() , 'correo': $('#correo').val() }),
+                data: JSON.stringify({ 'usuario': $('#username').val() , 'nombres': $('#nombres').val(),
+                    'telefono': $('#telefono').val(), 'fechaNacimiento': $('#fechaNacimiento').val(),
+                    'documento': $('#documento').val(), 'sexo': $('#sexo').val(),
+                    'apellidos': $('#apellidos').val(), 'password': $('#password').val(), 'correo': $('#correo').val() }),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
