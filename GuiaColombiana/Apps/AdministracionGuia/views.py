@@ -72,8 +72,8 @@ def login_method(request):
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
-            message = 'Ok'
+            message = 'Bienvenido ' + username
         else:
-            message = 'Not ok'
+            message = 'Usuario o contrasenia incorrectos.'
 
         return JsonResponse({'message': message})
