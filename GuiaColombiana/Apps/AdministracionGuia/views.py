@@ -76,7 +76,7 @@ def login_method(request):
         else:
             message = 'Usuario o contrasenia incorrectos.'
 
-        return JsonResponse({'message': message})
+    return JsonResponse({'message': message})
 
 
 def view_all_guides(request):
