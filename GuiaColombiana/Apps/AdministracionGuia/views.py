@@ -1,7 +1,7 @@
 import json
 
 from django.contrib.auth.models import User
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from .models import UserForm, Guia
 
@@ -73,6 +73,7 @@ def login_method(request):
         if user is not None:
             login(request, user)
             message = 'Bienvenido ' + username
+            return redirect('/guides')
         else:
             message = 'Usuario o contrasenia incorrectos.'
 
