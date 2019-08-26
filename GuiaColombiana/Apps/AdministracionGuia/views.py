@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse
-from .models import UserForm
+from .models import UserForm, Guia
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -77,3 +77,9 @@ def login_method(request):
             message = 'Usuario o contrasenia incorrectos.'
 
         return JsonResponse({'message': message})
+
+
+def view_all_guides(request):
+    guides_list = Guia.objects.all()
+    context = {'guides_list': guides_list}
+    return render(request, 'guides.html', context)

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guia Colombiana</title>
+</head>
+<body>
+    <ul>
+    {% for guide in guides_list %}
+        <li>
+        {{ guide.nombres }} {{ guide.apellidos }} - {{ guides.descripcion }} - {{ guide.categoria }}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
