@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io
 
 #### PyCharm ###
+.idea
 /.idea
 
 ### OSX ###
