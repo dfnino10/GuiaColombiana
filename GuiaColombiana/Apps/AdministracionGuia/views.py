@@ -40,15 +40,23 @@ def add_user_view(request):
         correo = jsonUser['correo']
 
         user_model = User.objects.create_user(username=usuario, password=password)
-        user_model.nombres = nombres
-        user_model.apellidos = apellidos
-        user_model.documento = documento
-        user_model.fechaNacimiento = fechaNacimiento
-        user_model.sexo = sexo
-        user_model.telefono = telefono
-        user_model.correo = correo
+        user_model.first_name = nombres
+        user_model.last_name = apellidos
+        user_model.email = correo
         user_model.save()
 
+        newUser = Usuario(
+            apellidos=apellidos,
+            nombres=nombres,
+            documento=documento,
+            fechaNacimiento =fechaNacimiento,
+            password=password,
+            sexo=sexo,
+            usuario=usuario,
+            telefono=telefono,
+            correo=correo,
+        )
+        newUser.save()
     return HttpResponse(serializers.serialize("json", [user_model]))
 
 
