@@ -27,15 +27,10 @@
                 success: function(data) {
                     if(data.message == "Ok")
                     {
-                        console.log($('#username').val());
-                        console.log($('#password').val());
-                        alert('yes');
                         window.location = "/guia/guides";
                     }
                     else
                     {
-                        console.log($('#username').val());
-                        console.log($('#password').val());
                         alert(data.message);
                     }
                 },

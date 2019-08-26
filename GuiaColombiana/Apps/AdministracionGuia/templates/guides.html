@@ -5,10 +5,11 @@
     <title>Guia Colombiana</title>
 </head>
 <body>
+    <h1>Listado de guias</h1>
     <ul>
     {% for guide in guides_list %}
         <li>
-        {{ guide.nombres }} {{ guide.apellidos }} - {{ guides.descripcion }} - {{ guide.categoria }}
+        {{ guide.nombres }} {{ guide.apellidos }} - {{ guide.descripcion }} - {{ guide.categoria }}
         </li>
     {% endfor %}
     </ul>
