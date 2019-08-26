@@ -3,33 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Gu&iacute; Colombiana</title>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
     <h1> Login </h1>
     <form method="post" action="" onsubmit="return sendForm();">
-        <input id="username" name="username" type="text" placeholder="Username">
-        <input id="password" name="password" type="password" placeholder="Password">
-        <input id="send" name="send" type="submit" value="Registrar" />
-
-        <a href="http://localhost:8000/guia/viewRegister">Cancelar</a>
+        <div>
+            <input id="username" name="username" type="text" placeholder="Username">
+            <input id="password" name="password" type="password" placeholder="Password">
+            <input id="send" name="send" type="submit" value="Ingresar" />
+            <a href="http://localhost:8000/guia/viewRegister">Registrar</a>
+        </div>
     </form>
 
     <script>
-        function sendForm(){
-            if($('#password').val() == '' || &('$#username').val() == '')
-            {
-                alert('Los campos no pueden ser vacios');
-            }
-
-            $.ajax(
-                {
-                    type:"POST",
-                    url:
+        function sendForm() {
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8000/guia/login/",
+                data: JSON.stringify({username: $('#username').val() , password: $('#password').val() }),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data) {
+                    if(data.message == "Ok")
+                    {
+                        console.log($('#username').val());
+                        console.log($('#password').val());
+                        alert('yes');
+                        window.location = "http://localhost:8000/guia/viewGuides";
+                    }
+                    else
+                    {
+                        console.log($('#username').val());
+                        console.log($('#password').val());
+                        alert(data.message);
+                    }
+                },
+                failure: function(errMsg) {
+                    alert("Se presentó un error al intentar el login");
                 }
-            )
+            });
+            return false;
         }
-
-
     </script>
 </body>
 </html>

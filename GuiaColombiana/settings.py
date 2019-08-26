@@ -14,7 +14,7 @@ import os
 import dj_database_url
 from django.conf.global_settings import DATABASES
 
-DATABASES['default'] =  dj_database_url.config()
+#DATABASES['default'] =  dj_database_url.config()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -87,17 +87,17 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 #DATABASES['default'] = dj_database_url.config()
-#DATABASES = {
-#    'default': {
-#    'ENGINE': 'django.db.backends.postgresql',
-#    'NAME': 'postgres',
-#    'USER': 'postgres',
-#    'PASSWORD': '1234',
-#    'HOST': 'localhost',
-#    'PORT': '',
-#
-#    }
-#}
+DATABASES = {
+    'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'postgres',
+    'USER': 'postgres',
+    'PASSWORD': 'admin',
+    'HOST': 'localhost',
+    'PORT': '5432',
+
+    }
+}
 
 
 # Password validation
