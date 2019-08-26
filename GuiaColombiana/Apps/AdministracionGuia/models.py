@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
 # Create your models here.
@@ -33,6 +34,7 @@ class Usuario(models.Model):
     password = models.CharField(max_length=20)
     telefono = models.CharField(max_length=10)
     correo = models.CharField(max_length=254)
+    user = models.ForeignKey(User, null=True, on_delete='')
 
     def NombreCompleto(self):
         cadena = "{0}, {1}"

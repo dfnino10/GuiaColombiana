@@ -92,9 +92,9 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 #    'ENGINE': 'django.db.backends.postgresql',
 #    'NAME': 'postgres',
 #    'USER': 'postgres',
-#    'PASSWORD': '1234',
+#    'PASSWORD': 'admin',
 #    'HOST': 'localhost',
-#    'PORT': '',
+#    'PORT': '5432',
 #
 #    }
 #}

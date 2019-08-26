@@ -9,12 +9,15 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
-from .models import UserForm
+from django.contrib.auth import authenticate, login
+from django.core.serializers import json
+from django.http import JsonResponse
 
 from .models import Usuario
 
 
 # Create your views here.
+from django.views.decorators.csrf import csrf_exempt
 
 
 def register_user_view(request):
@@ -55,3 +58,23 @@ def add_user_view(request):
         )
         newUser.save()
     return HttpResponse(serializers.serialize("json", [user_model]))
+
+
+def login_view(request):
+    return render(request, 'index.html')
+
+
+@csrf_exempt
+def login_method(request):
+    if request.method == 'POST':
+        jsonUser = json.loads(request.body)
+        username = jsonUser['username']
+        password = jsonUser['password']
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            message = 'Ok'
+        else:
+            message = 'Not ok'
+
+        return JsonResponse({'message': message})

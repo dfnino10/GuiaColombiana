@@ -22,5 +22,7 @@ from GuiaColombiana.Apps.AdministracionGuia import views
 urlpatterns = [
     url(r'^register/$', views.register_user_view, name='register'),
     url(r'^addUser/$', views.add_user_view, name='addUser'),
+    url(r'^login/$', views.login_method, name='login'),
+    url(r'^index/$', views.login_view, name='index')
 
 ]
