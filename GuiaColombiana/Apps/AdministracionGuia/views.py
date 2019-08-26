@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
-from django.core.serializers import json
+#from django.core.serializers import json
 from django.http import JsonResponse
 
 from .models import Usuario
