@@ -73,7 +73,7 @@ def login_method(request):
         if user is not None:
             login(request, user)
             message = 'Bienvenido ' + username
-            return redirect('/guia/guides/')
+            return redirect('guides')
         else:
             message = 'Usuario o contrasenia incorrectos.'
 
