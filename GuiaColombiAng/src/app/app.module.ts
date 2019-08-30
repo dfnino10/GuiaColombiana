@@ -10,17 +10,23 @@ import { MaterialModule } from './material.module'
 //Modulos
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
+import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
+
+// Rutas
+import { APP_ROUTES } from "./app-routes";
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NopagefoundComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    APP_ROUTES
   ],
   providers: [],
   bootstrap: [AppComponent]
