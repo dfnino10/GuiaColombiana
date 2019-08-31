@@ -3,7 +3,7 @@ import json
 from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse
-from .models import UserForm
+from .models import UserForm,Guia
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -77,3 +77,8 @@ def login_method(request):
             message = 'Not ok'
 
         return JsonResponse({'message': message})
+
+@csrf_exempt
+def search_guia_service(request):
+    guia_list = Guia.objects.all()
+    return HttpResponse(serializers.serialize("json", [guia_list]))
