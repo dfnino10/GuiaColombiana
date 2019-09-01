@@ -3,6 +3,8 @@ import json
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.urls import reverse
+from django.views.generic import TemplateView
+
 from .models import UserForm, Guia
 
 from django.shortcuts import render
@@ -83,3 +85,8 @@ def view_all_guides(request):
     guides_list = Guia.objects.all()
     context = {'guides_list': guides_list}
     return render(request, 'guides.html', context)
+
+
+class HomePageView(TemplateView):
+    def get(self, request, **kwargs):
+        return render(request, 'index.html', context=None)

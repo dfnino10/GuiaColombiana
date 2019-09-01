@@ -24,5 +24,6 @@ urlpatterns = [
     url(r'^addUser/$', views.add_user_view, name='addUser'),
     url(r'^login/$', views.login_method, name='login'),
     url(r'^index/$', views.login_view, name='index'),
-    url(r'^guides/$', views.view_all_guides, name='guides')
+    url(r'^guides/$', views.view_all_guides, name='guides'),
+    url(r'^$', views.HomePageView.as_view())
 ]
