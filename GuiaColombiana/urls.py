@@ -21,6 +21,6 @@ from GuiaColombiana.Apps.AdministracionGuia import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^guia/', include(('GuiaColombiana.Apps.AdministracionGuia.urls', "guia"), namespace= "guia")),
+    url(r'^', include('GuiaColombiana.Apps.AdministracionGuia.urls')),
 
 ]

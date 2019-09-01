@@ -1,47 +1,26 @@
-<!DOCTYPE html>
+{% load static %}
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Gu&iacute; Colombiana</title>
-    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+  <meta charset="utf-8">
+  <title>GuiaColombiAng</title>
+  <base href="/">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{% static 'bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'style.css' %}" rel="stylesheet">
 </head>
 <body>
-    <h1> Login </h1>
-    <form method="post" action="" onsubmit="return sendForm();">
-        <div style="display: flex; flex-direction: column; width: 50%;">
-            <input id="username" name="username" type="text" placeholder="Username" style="margin: 15px;">
-            <input id="password" name="password" type="password" placeholder="Password" style="margin: 15px;">
-            <input id="send" name="send" type="submit" value="Ingresar" style="margin: 15px;"/>
-            <a href="/guia/register" style="margin: 15px;">Registrar</a>
-            <a href="/guia/guides" style="margin: 15px;">Ver Guias</a>
-        </div>
-    </form>
+  <app-root>
 
-    <script>
-        function sendForm() {
-            $.ajax({
-                type: "POST",
-                url: "/guia/login/",
-                data: JSON.stringify({username: $('#username').val() , password: $('#password').val() }),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(data) {
-                    if(data.message == "Ok")
-                    {
-                        alert('Logged in');
-                        window.location = "../guides/";
-                    }
-                    else
-                    {
-                        alert(data.message);
-                    }
-                },
-                failure: function(errMsg) {
-                    alert("Se presentó un error al intentar el login");
-                }
-            });
-            return false;
-        }
-    </script>
+  </app-root>
+
+<script type="text/javascript" src="{% static 'jquery.min.js' %]"></script>
+<script type="text/javascript" src="{% static 'popper.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'perfect-scrollbar.jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'waves.js' %}"></script>
+<script type="text/javascript" src="{% static 'sidebarmenu.js' %}"></script>
+<script type="text/javascript" src="{% static 'custom.min.js' %}"></script>
 </body>
 </html>
