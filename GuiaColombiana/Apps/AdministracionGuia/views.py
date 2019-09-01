@@ -1,6 +1,7 @@
 import json
 
 from django.contrib.auth.models import User
+from django.core.serializers.json import DjangoJSONEncoder
 from django.shortcuts import render
 from django.urls import reverse
 from .models import UserForm,Guia
@@ -80,5 +81,7 @@ def login_method(request):
 
 @csrf_exempt
 def search_guia_service(request):
-    guia_list = Guia.objects.all()
-    return HttpResponse(serializers.serialize("json", [guia_list]))
+    SomeModel_json = serializers.serialize("json", Guia.objects.all())
+    struct = json.loads(SomeModel_json)
+    data = {"Guia": struct}
+    return JsonResponse(data)
