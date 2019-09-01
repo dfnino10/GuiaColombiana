@@ -1,0 +1,72 @@
+ <!-- Add icon library -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+ <div class="card">
+     <div class="left-side"></div>
+
+     <div class="right-side bg-light">
+         <div class="card-info">
+            <h1>Titulo del tour</h1>
+            <hr/>
+            <table style="width:100%; text-align:left">
+                <tr>
+                    <td><li class="fa fa-home"></li> Ciudad</td>
+                    <td>Bogotá</td>
+                </tr>
+                <tr>
+                    <td><li class="fa fa-usd"></li> Precio</td>
+                    <td>$25555</td>
+                </tr>
+                <tr>
+                    <td><li class="fa fa-list"></li> Categoria</td>
+                    <td>Secretos</td>
+                </tr>
+                <tr>
+                    <td><li class="fa fa-user"></li> Responsable</td>
+                    <td>John Doe</td>
+                </tr>
+            </table>
+            <hr/>
+            <p>Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. 
+                Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500. Asegurse que este texto no tenga
+                mas de 255 caracteres o se daña</p>
+         </div>
+         <span><button class="btn btn-info btn-lg btn-block text-uppercase contact" >Contact</button></span>
+     </div>
+ </div>
+ <hr />
+
+<div *ngFor='let tour of tours'>
+    <div class="card">
+        <div class="left-side"></div>
+
+        <div class="right-side bg-light">
+            <div class="card-info">
+                <h1>{{tour.name}}</h1>
+                <hr/>
+                <table style="width:100%; text-align:left">
+                    <tr>
+                        <td><li class="fa fa-home"></li> Ciudad</td>
+                        <td>{{tour.city}}</td>
+                    </tr>
+                    <tr>
+                        <td><li class="fa fa-usd"></li> Precio</td>
+                        <td>${{tour.price}}</td>
+                    </tr>
+                    <tr>
+                        <td><li class="fa fa-list"></li> Categoria</td>
+                        <td>{{tour.category}}</td>
+                    </tr>
+                    <tr>
+                        <td><li class="fa fa-user"></li> Responsable</td>
+                        <td>{{tour.responsible}}</td>
+                    </tr>
+                </table>
+                <hr/>
+                <p>{{tour.description}}</p>
+            </div>
+            <span><button class="btn btn-info btn-lg btn-block text-uppercase contact" >Contact</button></span>
+        </div>
+    </div>
+    <hr /> 
+</div>
