@@ -79,5 +79,28 @@ def login_method(request):
 
 
 def user_profile_view(request):
-    context = {}
-    return render(request, "templates/profile.html", context)
+    user = request.user
+    my_form = UserForm(request.GET)
+    # initial_data = {
+    #     'apellidos' : user.apellidos,
+    #
+    #     'nombres' : user.nombres,
+    #
+    #     'documento' : user.documento,
+    #
+    #     'fechaNacimiento' : user.fechaNacimiento,
+    #
+    #     'sexo': user.apellidos,
+    #
+    #     'usuario': user.apellidos,
+    #
+    #     'password': user.apellidos,
+    #
+    #     'telefono': user.apellidos,
+    #
+    #     'correo': user.apellidos,
+    # }
+    context = {
+        "form" :  my_form
+    }
+    return render(request, "profile.html", context)

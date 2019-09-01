@@ -9,7 +9,7 @@
     <div style="text-align: center;font-size: x-large;">
         <span> Perfil</span>
     </div>
-     <form method="UPDATE" action="" onsubmit="return sendForm();" style="text-align: center;">
+     <form method="UPDATE" style="text-align: center;">{% csrf_token %}
          <div style="border: 1px solid black;margin: 0% 30%;">
              <p>
                  <label for="usuario" > Usuario: </label>
@@ -56,7 +56,6 @@
              </p>
              <p>
                 <input id="send" name="send" type="submit" value="Registrar" />
-                <a href="http://localhost:8000/admin">Cancelar</a>
              </p>
          </div>
 
