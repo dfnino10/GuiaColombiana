@@ -1,10 +1,10 @@
 import json
 
 from django.contrib.auth.models import User
-from django.core.serializers.json import DjangoJSONEncoder
+
 from django.shortcuts import render
 from django.urls import reverse
-from .models import UserForm,Guia
+from .models import UserForm, Guia, Tour
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -81,7 +81,22 @@ def login_method(request):
 
 @csrf_exempt
 def search_guia_service(request):
-    SomeModel_json = serializers.serialize("json", Guia.objects.all())
-    struct = json.loads(SomeModel_json)
-    data = {"Guia": struct}
-    return JsonResponse(data)
+
+    guia = Guia.objects.all()
+    guia_json = serializers.serialize("json", guia)
+    struct = json.loads(guia_json)
+    return JsonResponse(struct, safe=False)
+
+@csrf_exempt
+def get_tour(request):
+    request_json = json.loads(request.body)
+    pk = request_json['pk']
+    try:
+        tour = Tour.objects.get(pk=pk)
+    except Tour.DoesNotExist:
+        response = {'mensajeError': 'No devuelve datos'}
+        return JsonResponse(response, safe=False)
+
+    tour_json = serializers.serialize("json", [tour])
+    struct = json.loads(tour_json)
+    return JsonResponse(struct, safe=False)

@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^login/$', views.login_method, name='login'),
     url(r'^index/$', views.login_view, name='index'),
     url(r'^search/$', views.search_guia_service, name='search'),
-
+    url(r'^getTour/$', views.get_tour, name='getTour'),
 
 ]
