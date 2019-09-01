@@ -13,6 +13,7 @@ import { AdminGuard } from '../services/service.index';
 
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { TourComponent } from './tour/tour.component';
 
 
 const pagesRoutes: Routes = [
@@ -25,6 +26,7 @@ const pagesRoutes: Routes = [
             { path: 'account-settings', component: AccoutSettingsComponent, data: { titulo: 'Ajustes de Tema' } },
             { path: 'perfil', component: ProfileComponent, data: { titulo: 'Perfil de usuario' } },
             { path: 'busqueda/:termino', component: BusquedaComponent, data: { titulo: 'Buscador' } },
+            { path: 'tour', component: TourComponent},
             // Mantenimientos
             {
                 path: 'usuarios',

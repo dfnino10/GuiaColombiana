@@ -18,7 +18,9 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
 //Material
-import { MaterialModule } from '../material.module'
+import { MaterialModule } from '../material.module';
+import { TourComponent } from './tour/tour.component'
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { MaterialModule } from '../material.module'
     DashboardComponent,
     AccoutSettingsComponent,
     UsuariosComponent,
-    BusquedaComponent
+    BusquedaComponent,
+    TourComponent
   ],
   exports: [
     DashboardComponent,
@@ -39,6 +42,7 @@ import { MaterialModule } from '../material.module'
     SharedModule,
     PAGES_ROUTES,
     FormsModule,
+    HttpClientModule
   ]
 })
 export class PagesModule { }
