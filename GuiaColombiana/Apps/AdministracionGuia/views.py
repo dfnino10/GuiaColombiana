@@ -100,8 +100,7 @@ def get_tour(request):
     except MultiValueDictKeyError:
         response = {'mensajeError': 'Campo pk es obligatorio'}
         return JsonResponse(response, safe=False)
-
-
+    
     tour_json = serializers.serialize("json", [tour])
     struct = json.loads(tour_json)
     return JsonResponse(struct, safe=False)
