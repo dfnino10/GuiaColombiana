@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils.datastructures import MultiValueDictKeyError
+
 from .models import UserForm, Guia, Tour
 
 from django.shortcuts import render
@@ -89,13 +91,16 @@ def search_guia_service(request):
 
 @csrf_exempt
 def get_tour(request):
-    request_json = json.loads(request.body)
-    pk = request_json['pk']
     try:
+        pk = request.GET['pk']
         tour = Tour.objects.get(pk=pk)
     except Tour.DoesNotExist:
-        response = {'mensajeError': 'No devuelve datos'}
+        response = {'mensajeError': 'No existen registro para el Id = ' + pk }
         return JsonResponse(response, safe=False)
+    except MultiValueDictKeyError:
+        response = {'mensajeError': 'Campo pk es obligatorio'}
+        return JsonResponse(response, safe=False)
+
 
     tour_json = serializers.serialize("json", [tour])
     struct = json.loads(tour_json)
