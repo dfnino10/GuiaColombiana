@@ -14,7 +14,6 @@ from django.http import JsonResponse
 
 from .models import Usuario
 
-
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
 
@@ -48,7 +47,7 @@ def add_user_view(request):
             apellidos=apellidos,
             nombres=nombres,
             documento=documento,
-            fechaNacimiento =fechaNacimiento,
+            fechaNacimiento=fechaNacimiento,
             password=password,
             sexo=sexo,
             usuario=usuario,
@@ -77,3 +76,8 @@ def login_method(request):
             message = 'Not ok'
 
         return JsonResponse({'message': message})
+
+
+def user_profile_view(request):
+    context = {}
+    return render(request, "templates/profile.html", context)
