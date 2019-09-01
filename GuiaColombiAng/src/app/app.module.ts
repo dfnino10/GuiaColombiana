@@ -10,7 +10,8 @@ import { MaterialModule } from './material.module'
 //Modulos
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './login/register.component';
-import { NopagefoundComponent } from './shared/nopagefound/nopagefound.component';
+import { SharedModule } from './shared/shared.module';
+import { PagesModule } from './pages/pages.module';
 
 // Rutas
 import { APP_ROUTES } from "./app-routes";
@@ -19,13 +20,14 @@ import { APP_ROUTES } from "./app-routes";
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
-    NopagefoundComponent
+    RegisterComponent
   ],
   imports: [
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
+    PagesModule,
     APP_ROUTES
   ],
   providers: [],
