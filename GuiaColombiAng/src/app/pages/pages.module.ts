@@ -17,24 +17,28 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
-@NgModule({
-    declarations: [
-        ProfileComponent,
-        PagesComponent,
-        DashboardComponent,
-        AccoutSettingsComponent,
-        UsuariosComponent,
-        BusquedaComponent
-    ],
-    exports: [
-        DashboardComponent,
+//Material
+import { MaterialModule } from '../material.module'
 
-    ],
-    imports: [
-        CommonModule,
-        SharedModule,
-        PAGES_ROUTES,
-        FormsModule,
-    ]
+@NgModule({
+  declarations: [
+    ProfileComponent,
+    PagesComponent,
+    DashboardComponent,
+    AccoutSettingsComponent,
+    UsuariosComponent,
+    BusquedaComponent
+  ],
+  exports: [
+    DashboardComponent,
+
+  ],
+  imports: [
+    MaterialModule,
+    CommonModule,
+    SharedModule,
+    PAGES_ROUTES,
+    FormsModule,
+  ]
 })
 export class PagesModule { }
