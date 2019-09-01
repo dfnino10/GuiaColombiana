@@ -1,0 +1,68 @@
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    display: table;
+    height: 500px;
+  }
+
+  .left-side {
+      background-image: url("/../../../assets/images/background/map.jpg");
+      background-size: cover;
+      float: left;
+      width: 70%;
+      height: inherit;
+      border: 1px solid black;
+  }
+
+  .right-side {
+    /*background-color: violet;*/
+    float: left;
+    width: 30%;
+    height: inherit;
+    vertical-align: text-bottom;
+  }
+
+  .right-side span{
+    position:absolute;
+    bottom:0;
+    right:0;
+    width: 30%;
+  }
+  
+  .title {
+    color: grey;
+    font-size: 18px;
+  }
+  
+  .contact {
+    width: 100%;
+  }
+
+  .card-info {
+      padding: 5%;
+  }
+
+  .card-info p {
+    max-width: max-content;
+    text-align: justify;
+  }
+  
+  a {
+    text-decoration: none;
+    font-size: 22px;
+    color: black;
+  }
+  
+  button:hover, a:hover {
+    opacity: 0.7;
+  }
+
+  .kyc {
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+      vertical-align: "text-bottom";
+      display: table-cell;
+  }
