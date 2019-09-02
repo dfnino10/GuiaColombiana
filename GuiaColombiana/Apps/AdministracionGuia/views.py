@@ -106,8 +106,11 @@ def get_tour(request):
     struct = json.loads(tour_json)
     return JsonResponse(struct, safe=False)
 
+
 def user_profile_view(request):
-    user = request.user
+#   if request.user.isauthenticated:
+
+    user = Usuario.objects.get(id=1)
     my_form = UserForm(request.GET)
     # initial_data = {
     #     'apellidos' : user.apellidos,

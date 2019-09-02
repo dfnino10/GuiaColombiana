@@ -87,17 +87,22 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
 #DATABASES['default'] = dj_database_url.config()
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': '1234',
+#         'HOST': 'localhost',
+#         'PORT': '',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
