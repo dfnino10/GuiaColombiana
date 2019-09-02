@@ -14,7 +14,7 @@ import os
 import dj_database_url
 from django.conf.global_settings import DATABASES
 
-#DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -97,12 +97,12 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 #         'PORT': '',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': 'mydatabase',
+#    }
+#}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
