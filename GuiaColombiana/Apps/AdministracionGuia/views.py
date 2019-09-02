@@ -2,13 +2,11 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
 from .models import UserForm, Guia
-=======
 from django.core.checks import messages
 from django.db import transaction
 
@@ -18,7 +16,6 @@ from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
 
->>>>>>> b2f7ed0de60f4ca3fedb14b1293e2938ed089558
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
