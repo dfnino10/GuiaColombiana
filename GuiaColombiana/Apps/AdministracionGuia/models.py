@@ -42,7 +42,7 @@ class Usuario(models.Model):
     fechaNacimiento = models.DateField(null = True )
     SEXOS = (('F', 'Femenino'), ('M', 'Masculino'))
     sexo = models.CharField(max_length=1, choices=SEXOS, default='M',  null = True)
-    telefono = models.CharField(max_length=20,  null = True)
+    telefono = models.CharField(max_length=10,  null = True)
     user = models.OneToOneField(User, on_delete=models.CASCADE,  null = True)
 
     def NombreCompleto(self):
