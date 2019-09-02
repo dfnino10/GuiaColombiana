@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from .models import UserForm, Guia, Tour
+from .models import UserForm, Guia, Tour, UserModifForm
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -108,31 +108,13 @@ def get_tour(request):
 
 
 def user_profile_view(request):
-#   if request.user.isauthenticated:
-
-    user = Usuario.objects.get(id=1)
-    my_form = UserForm(request.GET)
-    # initial_data = {
-    #     'apellidos' : user.apellidos,
-    #
-    #     'nombres' : user.nombres,
-    #
-    #     'documento' : user.documento,
-    #
-    #     'fechaNacimiento' : user.fechaNacimiento,
-    #
-    #     'sexo': user.apellidos,
-    #
-    #     'usuario': user.apellidos,
-    #
-    #     'password': user.apellidos,
-    #
-    #     'telefono': user.apellidos,
-    #
-    #     'correo': user.apellidos,
-    # }
-    context = {
-        "form" :  my_form
-    }
-    return render(request, "profile.html", context)
+    if request.user.is_authenticated:
+        usuario = Usuario.objects.get(id=request.user.id)
+        my_form = UserModifForm(request.POST or None, instance=usuario)
+        #if my_form.is_valid():
+           # my_form.save()
+        context = {
+            "form" :  my_form
+        }
+        return render(request, "profile.html", context)
 

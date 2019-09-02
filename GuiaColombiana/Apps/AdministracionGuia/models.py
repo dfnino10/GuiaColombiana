@@ -1,9 +1,11 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
+
 # Create your models here.
 
-CATEGORIAS = (('Mu','Museos'), ('Re','Restaurantes'), ('Bic','Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
+CATEGORIAS = (('Mu', 'Museos'), ('Re', 'Restaurantes'), ('Bic', 'Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
+
 
 class Guia(models.Model):
     apellidoPaterno = models.CharField(max_length=35)
@@ -11,9 +13,9 @@ class Guia(models.Model):
     nombres = models.CharField(max_length=35)
     documento = models.CharField(max_length=11)
     fechaNacimiento = models.DateField()
-    SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
-    sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
-    descripcion= models.CharField(max_length=200)
+    SEXOS = (('F', 'Femenino'), ('M', 'Masculino'))
+    sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
+    descripcion = models.CharField(max_length=200)
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
 
     def NombreCompleto(self):
@@ -23,12 +25,13 @@ class Guia(models.Model):
     def __str__(self):
         return self.NombreCompleto()
 
+
 class Usuario(models.Model):
     apellidos = models.CharField(max_length=150)
     nombres = models.CharField(max_length=30)
     documento = models.CharField(max_length=11)
     fechaNacimiento = models.DateField()
-    SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
+    SEXOS = (('F', 'Femenino'), ('M', 'Masculino'))
     sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
     usuario = models.CharField(max_length=150)
     password = models.CharField(max_length=20)
@@ -43,13 +46,22 @@ class Usuario(models.Model):
     def __str__(self):
         return self.NombreCompleto()
 
+
 class Tour(models.Model):
     nombre = models.CharField(max_length=35)
     precio = models.CharField(max_length=11)
     categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
 
 
-class UserForm (ModelForm):
+class UserForm(ModelForm):
     class Meta:
         model = Usuario
-        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono', 'correo']
+        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono',
+                  'correo']
+
+
+class UserModifForm(ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono',
+                  'correo']
