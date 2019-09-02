@@ -1,7 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
-import { HttpClient } from '@angular/common/http';
+import { Login } from '../../models/login.model';
+
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { URL_SERVICIOS } from '../../config/config';
+import swal from 'sweetalert2'
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
 
 
 import { Router } from '@angular/router';
@@ -10,8 +15,14 @@ import { Router } from '@angular/router';
 export class UsuarioService {
 
   usuario: Usuario;
-  token: string;
   menu: any[] = [];
+
+  // Http Headers
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }
 
   constructor(
     public http: HttpClient,
@@ -21,41 +32,35 @@ export class UsuarioService {
   }
 
   estaLogueado() {
-    return ( this.token.length > 5 ) ? true : false;
+    return (localStorage.getItem('usuario')) ? true : false;
   }
 
   cargarStorage() {
 
-    if ( localStorage.getItem('token')) {
-      this.token = localStorage.getItem('token');
-      this.usuario = JSON.parse( localStorage.getItem('usuario') );
-      this.menu = JSON.parse( localStorage.getItem('menu') );
+    if (localStorage.getItem('usuario')) {
+      this.usuario = JSON.parse(localStorage.getItem('usuario'));
+      this.menu = JSON.parse(localStorage.getItem('menu'));
     } else {
-      this.token = '';
       this.usuario = null;
       this.menu = [];
     }
 
   }
 
-  guardarStorage( id: string, token: string, usuario: Usuario, menu: any ) {
+  guardarStorage(id: string, usuario: Usuario, menu?: any) {
 
-    localStorage.setItem('id', id );
-    localStorage.setItem('token', token );
-    localStorage.setItem('usuario', JSON.stringify(usuario) );
-    localStorage.setItem('menu', JSON.stringify(menu) );
+    localStorage.setItem('id', id);
+    localStorage.setItem('usuario', JSON.stringify(usuario));
+    localStorage.setItem('menu', JSON.stringify(menu));
 
     this.usuario = usuario;
-    this.token = token;
     this.menu = menu;
   }
 
   logout() {
     this.usuario = null;
-    this.token = '';
     this.menu = [];
 
-    localStorage.removeItem('token');
     localStorage.removeItem('usuario');
     localStorage.removeItem('menu');
 
@@ -63,31 +68,38 @@ export class UsuarioService {
   }
 
 
-  login( usuario: Usuario, recordar: boolean = false ) {
-
-    if ( recordar ) {
-      localStorage.setItem('email', usuario.email );
-    }else {
+  login(usuario: Login, recordar: boolean = false): Observable<any> {
+    console.log('login eduard');
+    if (recordar) {
+      localStorage.setItem('email', usuario.username);
+    } else {
       localStorage.removeItem('email');
     }
 
-
-
+    let url = URL_SERVICIOS + '/guia/login/';
+    console.log('url: ', url, 'usuario:', JSON.stringify(usuario));
+    return this.http.post(url, JSON.stringify(usuario), this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(err => {
+          swal.fire('Error en el login', err.error.mensaje, 'error');
+          return Observable.throw(err);
+        }
+        )
+      )
   }
 
 
-  crearUsuario( usuario: Usuario ) {
+  crearUsuario(usuario: Usuario) {
 
     let url = URL_SERVICIOS + '/usuario';
 
 
   }
 
-  actualizarUsuario( usuario: Usuario ) {
+  actualizarUsuario(usuario: Usuario) {
 
     let url = URL_SERVICIOS + '/usuario/' + usuario._id;
-    url += '?token=' + this.token;
-
 
 
   }

@@ -1,11 +1,24 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+<<<<<<< HEAD
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.views.generic import TemplateView
 
 from .models import UserForm, Guia
+=======
+from django.core.checks import messages
+from django.db import transaction
+
+from django.shortcuts import render
+from django.urls import reverse
+from django.utils.datastructures import MultiValueDictKeyError
+
+from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
+
+>>>>>>> b2f7ed0de60f4ca3fedb14b1293e2938ed089558
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -15,7 +28,6 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 
 from .models import Usuario
-
 
 # Create your views here.
 from django.views.decorators.csrf import csrf_exempt
@@ -47,15 +59,12 @@ def add_user_view(request):
         user_model.save()
 
         newUser = Usuario(
-            apellidos=apellidos,
-            nombres=nombres,
             documento=documento,
-            fechaNacimiento =fechaNacimiento,
+            fechaNacimiento=fechaNacimiento,
             password=password,
             sexo=sexo,
-            usuario=usuario,
             telefono=telefono,
-            correo=correo,
+            user = user_model
         )
         newUser.save()
     return HttpResponse(serializers.serialize("json", [user_model]))
@@ -87,6 +96,65 @@ def view_all_guides(request):
     return render(request, 'guides.html', context)
 
 
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'index.html', context=None)
+@csrf_exempt
+def search_guia_service(request):
+
+    guia = Guia.objects.all()
+    guia_json = serializers.serialize("json", guia)
+    struct = json.loads(guia_json)
+    return JsonResponse(struct, safe=False)
+
+
+@csrf_exempt
+def get_tour(request):
+    try:
+        pk = request.GET['pk']
+        tour = Tour.objects.get(guia_id=pk)
+    except Tour.DoesNotExist:
+        response = {'mensajeError': 'No existen registro para el Id = ' + pk }
+        return JsonResponse(response, safe=False)
+    except MultiValueDictKeyError:
+        response = {'mensajeError': 'Campo pk es obligatorio'}
+        return JsonResponse(response, safe=False)
+    
+    tour_json = serializers.serialize("json", [tour])
+    struct = json.loads(tour_json)
+    return JsonResponse(struct, safe=False)
+
+@login_required
+def user_profile_view(request):
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        usuario_form = UsuarioForm(request.POST, instance=request.user.usuario)
+        context = {
+            "user_form": user_form,
+            "usuario_form": usuario_form,
+        }
+        if user_form.is_valid() and usuario_form.is_valid():
+            user_form.save()
+            usuario_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return render(request, "profile.html", context)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UsuarioForm(instance=request.user.profile)
+
+    return render(request, "profile.html", context)
+
+
+@csrf_exempt
+def get_ciudad(request):
+    ciudades = Ciudad.objects.all()
+    ciudades_json = serializers.serialize("json", ciudades)
+    struct = json.loads(ciudades_json)
+    return JsonResponse(struct, safe=False)
+
+@csrf_exempt
+def get_categoria(request):
+    categorias = Categoria.objects.all()
+    catergorias_json = serializers.serialize("json", categorias)
+    struct = json.loads(catergorias_json)
+    return JsonResponse(struct, safe=False)
+

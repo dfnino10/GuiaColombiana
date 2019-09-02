@@ -16,11 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from django.urls import path, include
+from GuiaColombiana.Apps.AdministracionGuia.views import user_profile_view
 
 from GuiaColombiana.Apps.AdministracionGuia import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^', include('GuiaColombiana.Apps.AdministracionGuia.urls')),
+    path('profile/', user_profile_view),
+    url(r'^guia/', include(('GuiaColombiana.Apps.AdministracionGuia.urls', "guia"), namespace= "guia")),
 
 ]
