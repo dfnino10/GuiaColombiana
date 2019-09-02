@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from .models import UserForm, Guia, Tour, Ciudad
+from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -110,7 +110,7 @@ def get_ciudad(request):
 
 @csrf_exempt
 def get_categoria(request):
-    categorias = Ciudad.objects.all()
+    categorias = Categoria.objects.all()
     catergorias_json = serializers.serialize("json", categorias)
     struct = json.loads(catergorias_json)
     return JsonResponse(struct, safe=False)
