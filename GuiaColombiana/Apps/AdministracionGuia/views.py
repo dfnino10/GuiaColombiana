@@ -1,12 +1,16 @@
 import json
 
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.checks import messages
+from django.db import transaction
 
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
-from .models import UserForm, Guia, Tour, UserModifForm
+from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
+
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -47,15 +51,12 @@ def add_user_view(request):
         user_model.save()
 
         newUser = Usuario(
-            apellidos=apellidos,
-            nombres=nombres,
             documento=documento,
             fechaNacimiento=fechaNacimiento,
             password=password,
             sexo=sexo,
-            usuario=usuario,
             telefono=telefono,
-            correo=correo,
+            user = user_model
         )
         newUser.save()
     return HttpResponse(serializers.serialize("json", [user_model]))
@@ -94,7 +95,7 @@ def search_guia_service(request):
 def get_tour(request):
     try:
         pk = request.GET['pk']
-        tour = Tour.objects.get(pk=pk)
+        tour = Tour.objects.get(guia_id=pk)
     except Tour.DoesNotExist:
         response = {'mensajeError': 'No existen registro para el Id = ' + pk }
         return JsonResponse(response, safe=False)
@@ -106,15 +107,40 @@ def get_tour(request):
     struct = json.loads(tour_json)
     return JsonResponse(struct, safe=False)
 
-
+@login_required
 def user_profile_view(request):
-    if request.user.is_authenticated:
-        usuario = Usuario.objects.get(id=request.user.id)
-        my_form = UserModifForm(request.POST or None, instance=usuario)
-        #if my_form.is_valid():
-           # my_form.save()
+    if request.method == 'POST':
+        user_form = UserForm(request.POST, instance=request.user)
+        usuario_form = UsuarioForm(request.POST, instance=request.user.usuario)
         context = {
-            "form" :  my_form
+            "user_form": user_form,
+            "usuario_form": usuario_form,
         }
-        return render(request, "profile.html", context)
+        if user_form.is_valid() and usuario_form.is_valid():
+            user_form.save()
+            usuario_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return render(request, "profile.html", context)
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UsuarioForm(instance=request.user.profile)
+
+    return render(request, "profile.html", context)
+
+
+@csrf_exempt
+def get_ciudad(request):
+    ciudades = Ciudad.objects.all()
+    ciudades_json = serializers.serialize("json", ciudades)
+    struct = json.loads(ciudades_json)
+    return JsonResponse(struct, safe=False)
+
+@csrf_exempt
+def get_categoria(request):
+    categorias = Categoria.objects.all()
+    catergorias_json = serializers.serialize("json", categorias)
+    struct = json.loads(catergorias_json)
+    return JsonResponse(struct, safe=False)
 

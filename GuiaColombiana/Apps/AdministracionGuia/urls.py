@@ -26,5 +26,8 @@ urlpatterns = [
     url(r'^index/$', views.login_view, name='index'),
     url(r'^search/$', views.search_guia_service, name='search'),
     url(r'^getTour/$', views.get_tour, name='getTour'),
+    url(r'^getCiudad/$', views.get_ciudad, name='getCiudad'),
+    url(r'^getCategorias/$', views.get_categoria, name='getCategorias'),
+    path('profile/', views.user_profile_view, name='profile'),
 
 ]

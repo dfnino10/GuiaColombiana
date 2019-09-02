@@ -1,11 +1,21 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.forms import ModelForm
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
 CATEGORIAS = (('Mu', 'Museos'), ('Re', 'Restaurantes'), ('Bic', 'Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
 
+
+
+class Categoria(models.Model):
+    id = models.CharField(max_length=2, primary_key=True)
+    nombre = models.CharField(max_length=50)
+
+class Ciudad(models.Model):
+    nombre = models.CharField(max_length=50)
 
 class Guia(models.Model):
     apellidoPaterno = models.CharField(max_length=35)
@@ -13,10 +23,11 @@ class Guia(models.Model):
     nombres = models.CharField(max_length=35)
     documento = models.CharField(max_length=11)
     fechaNacimiento = models.DateField()
-    SEXOS = (('F', 'Femenino'), ('M', 'Masculino'))
-    sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
-    descripcion = models.CharField(max_length=200)
-    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
+    SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
+    sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
+    descripcion= models.CharField(max_length=200)
+    categoria =  models.ForeignKey(User, null=True, on_delete='')
+    ciudad = models.ForeignKey(Ciudad, null=True, on_delete='')
 
     def NombreCompleto(self):
         cadena = "{0} {1}, {2}"
@@ -27,17 +38,12 @@ class Guia(models.Model):
 
 
 class Usuario(models.Model):
-    apellidos = models.CharField(max_length=150)
-    nombres = models.CharField(max_length=30)
-    documento = models.CharField(max_length=11)
-    fechaNacimiento = models.DateField()
+    documento = models.CharField(max_length=11, null = True)
+    fechaNacimiento = models.DateField(null = True )
     SEXOS = (('F', 'Femenino'), ('M', 'Masculino'))
-    sexo = models.CharField(max_length=1, choices=SEXOS, default='M')
-    usuario = models.CharField(max_length=150)
-    password = models.CharField(max_length=20)
-    telefono = models.CharField(max_length=10)
-    correo = models.CharField(max_length=254)
-    user = models.ForeignKey(User, null=True, on_delete='')
+    sexo = models.CharField(max_length=1, choices=SEXOS, default='M',  null = True)
+    telefono = models.CharField(max_length=10,  null = True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE,  null = True)
 
     def NombreCompleto(self):
         cadena = "{0}, {1}"
@@ -46,22 +52,28 @@ class Usuario(models.Model):
     def __str__(self):
         return self.NombreCompleto()
 
+    @receiver(post_save, sender=User)
+    def create_user_usuario(sender, instance, created, **kwargs):
+        if created:
+            Usuario.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_usuario(sender, instance, **kwargs):
+        instance.usuario.save()
+
 
 class Tour(models.Model):
     nombre = models.CharField(max_length=35)
     precio = models.CharField(max_length=11)
-    categoria = models.CharField(max_length=30, choices=CATEGORIAS, default='Mu')
-
+    descripcion = models.CharField(max_length=1000)
+    guia = models.ForeignKey(Guia, null=True, on_delete='')
 
 class UserForm(ModelForm):
     class Meta:
-        model = Usuario
-        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono',
-                  'correo']
+        model = User
+        fields = ('first_name', 'last_name', 'email')
 
-
-class UserModifForm(ModelForm):
+class UsuarioForm(ModelForm):
     class Meta:
         model = Usuario
-        fields = ['apellidos', 'nombres', 'documento', 'fechaNacimiento', 'sexo', 'usuario', 'password', 'telefono',
-                  'correo']
+        fields = ['documento', 'fechaNacimiento', 'sexo', 'telefono']

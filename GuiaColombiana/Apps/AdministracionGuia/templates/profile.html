@@ -11,7 +11,8 @@
         <span> Perfil</span>
     </div>
      <form method="POST" action='.' style="text-align: center; border: 1px solid black;margin: 0% 30%;">{% csrf_token %}
-         {{form.as_p}}
+         {{user_form.as_p}}
+         {{ usuario_form.as_p }}
          <input id="send" name="send" type="submit" value="Save" />
      </form>
 
