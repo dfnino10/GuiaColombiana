@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^getTour/$', views.get_tour, name='getTour'),
     url(r'^getCiudad/$', views.get_ciudad, name='getCiudad'),
     url(r'^getCategorias/$', views.get_categoria, name='getCategorias'),
+    url(r'^getGuides/$', views.view_all_guides, name='getGuides'),
     path('profile/', views.user_profile_view, name='profile'),
 ]
