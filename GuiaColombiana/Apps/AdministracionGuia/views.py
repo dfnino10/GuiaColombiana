@@ -58,13 +58,12 @@ def add_user_view(request):
         newUser = Usuario(
             documento=documento,
             fechaNacimiento=fechaNacimiento,
-            password=password,
             sexo=sexo,
             telefono=telefono,
             user = user_model
         )
         newUser.save()
-    return HttpResponse(serializers.serialize("json", [user_model]))
+        return HttpResponse(serializers.serialize("json", [user_model]))
 
 
 def login_view(request):
