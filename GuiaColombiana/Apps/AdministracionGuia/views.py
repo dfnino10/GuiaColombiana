@@ -7,8 +7,7 @@ from django.core.checks import messages
 
 from django.utils.datastructures import MultiValueDictKeyError
 
-from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
-
+from .models import Usuario, UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
 
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
@@ -16,10 +15,9 @@ from django.core import serializers
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 
-from .models import Usuario
+from django.core.mail import send_mail
 
 # Create your views here.
-from django.views.decorators.csrf import csrf_exempt
 
 
 def register_user_view(request):
@@ -138,6 +136,8 @@ def get_ciudad(request):
     struct = json.loads(ciudades_json)
     return JsonResponse(struct, safe=False)
 
+
+
 @csrf_exempt
 def get_categoria(request):
     categorias = Categoria.objects.all()
@@ -145,3 +145,39 @@ def get_categoria(request):
     struct = json.loads(catergorias_json)
     return JsonResponse(struct, safe=False)
 
+@csrf_exempt
+def send_email_view(request):
+    if request.method == 'POST':
+        jsonObject = json.loads(request.body)
+        name = jsonObject['name'] if jsonObject['name'] is not None else 'empty name'
+        user_email = jsonObject['email'] if jsonObject['email'] is not None else 'empty user email'
+        message = jsonObject['message'] if jsonObject['message'] is not None else 'no message'
+
+        recipients = ['j.guzmand@uniandes.edu.co']
+        send_mail('Tienes un nuevo mensaje de ' +name+' - GuiaColombiana', message, user_email, recipients)
+
+    return HttpResponse()
+@csrf_exempt
+def send_email_view(request):
+    if request.method == 'POST':
+        jsonObject = json.loads(request.body)
+        name = jsonObject['name'] if jsonObject['name'] is not None else 'empty name'
+        user_email = jsonObject['email'] if jsonObject['email'] is not None else 'empty user email'
+        message = jsonObject['message'] if jsonObject['message'] is not None else 'no message'
+
+        recipients = ['j.guzmand@uniandes.edu.co']
+        send_mail('Tienes un nuevo mensaje de ' +name+' - GuiaColombiana', message, user_email, recipients)
+
+    return HttpResponse()
+@csrf_exempt
+def send_email_view(request):
+    if request.method == 'POST':
+        jsonObject = json.loads(request.body)
+        name = jsonObject['name'] if jsonObject['name'] is not None else 'empty name'
+        user_email = jsonObject['email'] if jsonObject['email'] is not None else 'empty user email'
+        message = jsonObject['message'] if jsonObject['message'] is not None else 'no message'
+
+        recipients = ['j.guzmand@uniandes.edu.co']
+        send_mail('Tienes un nuevo mensaje de ' +name+' - GuiaColombiana', message, user_email, recipients)
+
+    return HttpResponse()

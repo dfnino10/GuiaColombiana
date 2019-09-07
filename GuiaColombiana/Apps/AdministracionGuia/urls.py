@@ -30,4 +30,5 @@ urlpatterns = [
     url(r'^getCategorias/$', views.get_categoria, name='getCategorias'),
     url(r'^getGuides/$', views.view_all_guides, name='getGuides'),
     path('profile/', views.user_profile_view, name='profile'),
+    url(r'^sendEmail/$', views.send_email_view, name='email'),
 ]
