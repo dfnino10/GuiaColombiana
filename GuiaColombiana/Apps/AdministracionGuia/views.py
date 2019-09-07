@@ -46,7 +46,7 @@ def add_user_view(request):
         user_model.email = correo
         user_model.save()
 
-        newUser = Usuario.objects.get(id_user=user_model)
+        newUser = Usuario.objects.get(user_id=user_model)
 
         newUser.documento = documento
         newUser.fechaNacimiento = fechaNacimiento
