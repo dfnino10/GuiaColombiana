@@ -2,16 +2,9 @@ import json
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.shortcuts import render, redirect
-from django.urls import reverse
-from django.views.generic import TemplateView
 
-from .models import UserForm, Guia
 from django.core.checks import messages
-from django.db import transaction
 
-from django.shortcuts import render
-from django.urls import reverse
 from django.utils.datastructures import MultiValueDictKeyError
 
 from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
@@ -20,7 +13,6 @@ from .models import UserForm, Guia, Tour, Ciudad, Categoria, Ciudad, UsuarioForm
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
-from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 
@@ -55,13 +47,12 @@ def add_user_view(request):
         user_model.email = correo
         user_model.save()
 
-        newUser = Usuario(
-            documento=documento,
-            fechaNacimiento=fechaNacimiento,
-            sexo=sexo,
-            telefono=telefono,
-            user = user_model
-        )
+        newUser = Usuario.objects.get(id_user=user_model)
+
+        newUser.documento = documento
+        newUser.fechaNacimiento = fechaNacimiento
+        newUser.sexo = sexo
+        newUser.telefono = telefono
         newUser.save()
         return HttpResponse(serializers.serialize("json", [user_model]))
 

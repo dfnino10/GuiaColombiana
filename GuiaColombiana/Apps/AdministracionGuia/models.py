@@ -26,7 +26,7 @@ class Guia(models.Model):
     SEXOS = (('F', 'Femenino'),('M', 'Masculino'))
     sexo=models.CharField(max_length=1, choices=SEXOS, default='M')
     descripcion= models.CharField(max_length=200)
-    categoria =  models.ForeignKey(User, null=True, on_delete='')
+    categoria =  models.ForeignKey(Categoria, null=True, on_delete='')
     ciudad = models.ForeignKey(Ciudad, null=True, on_delete='')
 
     def NombreCompleto(self):
