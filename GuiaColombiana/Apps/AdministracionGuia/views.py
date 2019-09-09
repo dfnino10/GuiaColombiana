@@ -153,7 +153,7 @@ def send_email_view(request):
         user_email = jsonObject['email'] if jsonObject['email'] is not None else 'empty user email'
         message = jsonObject['message'] if jsonObject['message'] is not None else 'no message'
 
-        recipients = ['j.guzmand@uniandes.edu.co']
+        recipients = ['cr.calle@uniandes.edu.co','j.guzmand@uniandes.edu.co']
         send_mail('Tienes un nuevo mensaje de ' +name+' - GuiaColombiana', message, user_email, recipients)
 
     return HttpResponse()
