@@ -6,3 +6,5 @@ from GuiaColombiana.Apps.AdministracionGuia.models import *
 admin.site.register(Guia)
 admin.site.register(Usuario)
 admin.site.register(Tour)
+admin.site.register(Ciudad)
+admin.site.register(Categoria)

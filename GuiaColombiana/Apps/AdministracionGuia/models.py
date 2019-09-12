@@ -6,13 +6,11 @@ from django.dispatch import receiver
 
 # Create your models here.
 
-CATEGORIAS = (('Mu', 'Museos'), ('Re', 'Restaurantes'), ('Bic', 'Paseos de Bicileta'), ('SO', 'Sitios ocultos'))
-
-
-
 class Categoria(models.Model):
+    CATEGORIAS = (('Mu', 'Museos'), ('Re', 'Restaurantes'), ('Bi', 'Paseos de Bicicleta'), ('So', 'Sitios ocultos'))
     id = models.CharField(max_length=2, primary_key=True)
     nombre = models.CharField(max_length=50)
+    tipo = models.CharField(max_length=20, choices=CATEGORIAS, default='Mu')
 
 class Ciudad(models.Model):
     nombre = models.CharField(max_length=50)
