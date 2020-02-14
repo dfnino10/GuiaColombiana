@@ -14,7 +14,7 @@ import os
 import dj_database_url
 from django.conf.global_settings import DATABASES
 
-DATABASES['default'] = dj_database_url.config()
+#DATABASES['default'] = dj_database_url.config()
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -97,12 +97,12 @@ WSGI_APPLICATION = 'GuiaColombiana.wsgi.application'
 #         'PORT': '',
 #     }
 # }
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': 'mydatabase',
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'mydatabase',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
@@ -149,6 +149,6 @@ STATICFILES_DIRS = (
 #email_settings
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER = 'apikey'
-EMAIL_HOST_PASSWORD = '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'
+EMAIL_HOST_PASSWORD = 'KEY DELETED'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
